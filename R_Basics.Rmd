@@ -1,0 +1,343 @@
+---
+title: "R Basics"
+author: "Kai Nguyen"
+date: "2025-06-06"
+output:
+  html_document: default
+---
+# Conventions
+```{r}
+# This is an edited transcript of a R session
+# We've inserted comment lines, which begin with a '#'
+```
+_Command lines_ begin with a '>'. You should enter everything after the '>' and hit return. R's response will be in the line or lines below the command.  
+
+***Trick***: You can use the up arrow to find previous commands.  
+  
+# Using a tutorial  
+  
+  In order to (begin to) learn the commands you should have RStudio open and go through the tutorial line-by-line. When the tutorial shows you a command try it in RStudio. Then make up a few of your own variants and try them. If you wonder about the effect of some command, try it. The worst that will happen is R will print out an error message.  
+  
+# Introduction  
+  
+  R is a full featured statistics package as well as a full programming language. The command window is the one with the >. It's probably the window in the lower left.  
+  
+# Starting R  
+  
+  If you've installed R and RStudio then simply start the RStudio application. The command window is the one with the >. It's probably the window in the lower left.  
+  
+# R as a Calculator  
+  
+  <span style="color:red;"># The basic operations are *, +, -, /, ^</span>  
+  
+
+
+```{r}
+2+3
+2*3
+2/3
+2^3
+2*(3+1)^2
+```
+  
+  Don't worry for now about the [1]. It will play more of a role when R is printing numbers in a list.
+  
+# Using Variables  
+  
+  <span style="color:red;"># You can store results in variables and use them in calculations.</span>  
+  
+```{r}
+x = 2 + 3
+```
+<span style="color:red;"># When you assign a value to a variable it does not echo the answer to screen. You can see the value of x by just using x as a command.</span>  
+```{r}
+print(x)
+y = 1 + 2
+print(x*y)
+z = x^y
+print(z)
+```
+<span style="color:red;"># R has another notation for assignment: the arrow: <-. Many R programmers use this. It may seem odd to programmers coming from other languages.</span> 
+
+```{r}
+x <- 3
+print(x)
+x <- 5.412
+print(x)
+```
+
+# Vectors  
+### A vector is a type of list. Often it is a list of numbers, but it can be a list of other types such as characters.
+### You creat vectors by using the c().  
+  
+   <span style="color:red;"># A vector with 4 entries</span>  
+   
+   <span style="color:red;"># (Of course, you can store vectors in variables.)</span>
+```{r}
+x = c(1.1, 0.0, 3.14, 2.718)
+print(x)
+```
+
+<span style="color:red;"># Of course using the arrow instead of equal sign works here.</span>
+```{r}
+x <- c(2,4,6)
+print(x)
+```
+
+<span style="color:red;"># Sequences of intergers are so common that there is a shortcut for making them.</span>
+```{r}
+x = 1:4
+print(x)
+x = 3:10
+print(x)
+x = 9:2
+print(x)
+```
+
+<span style="color:red;"># A long vector will be displayed over several lines. At the start of each line in brackets is the index of the first entry on that line.</span>
+```{r}
+x = 1:40
+print(x)
+```
+
+# Vector Arithmetic  
+  
+### You can add a number to a vector. This means adding the number to every element of the vector.
+```{r}
+x = c(1,3,5)
+y = x + 7.1
+print(y)
+```
+
+### Subtraction, multiplication, division and powers work the same way.
+```{r}
+x= c(1,3,5)
+#Multiplication
+y = 7*x
+print(y)
+
+#Division
+y =x/7
+print(y)
+
+#Powers
+y=x^6
+print(y)
+```
+
+### You can add, subtract, multiply, and divide vectors of the same size.
+```{r}
+# Given 2 vectors x and y
+x = c(1, 2, 3)
+y = c(4, 5, 6)
+
+#add
+print(x+y)
+
+#subtract
+print(x-y)
+
+#multiply
+print(x*y)
+
+#divide
+print(x/y)
+
+```
+### You can even raise a vector to another vector of the same length
+```{r}
+#raise a vector x^y
+print(x^y)
+```
+
+# Accessing entries in a vector.  
+### Entries in vectors are found with the notation x[j]
+```{r}
+x = c(2, 4, 6, 8, 10)
+print(x[1])
+print(x[2])
+print(x[3])
+print(x[4])
+```
+### R allows you to access more than one entry at a time
+ x has 8 elements
+```{r}
+x = 2*c(1, 2, 3, 4, 5, 6, 7, 8)
+print(x)
+```
+
+### Notice that we have to put a vector of indices inside the brackets to access the first and second entries in x
+```{r}
+y = x[c(1,2)]
+print(y)
+y = x[c(1,3,6)]
+print(y)
+```
+
+### We can access the same entry multiple times.
+```{r}
+y = x[c(2,2,2,1)]
+print(y)
+```
+
+### Using the colon method of creating vectors is useful here.
+```{r}
+y = x[2:5]
+print(y)
+```
+
+# Functions on Vectors
+***R has all the functions you know and love. Most of them can be used on vectors.***
+
+### We will start with functions numbers
+```{r}
+x = sin(1)
+print(x)
+
+x = sin(2)
+print(x)
+
+x = cos(112/4)
+print(x)
+```
+
+### R knows about pi
+```{r}
+print(pi)
+print(tan(pi/4))
+```
+
+### The exponential function is given by 'exp'
+```{r}
+x = exp(0)
+print(x)
+x = exp(1)
+print(x)
+```
+
+### Sin acts on vectors by taking the sin of each element.
+```{r}
+x = c(1, 2, 3, pi/2)
+print(x)
+y = sin(x)
+print(y)
+```
+
+
+### exp also acts on vectors
+```{r}
+x = c(0, 2, 1)
+y = exp(x)
+print(y)
+
+y = exp(x[c(1, 2)])
+print(y)
+```
+### The sum() and mean() functions on vectors take the sum and average respectively of the vectors entries.
+
+```{r}
+# given vector x(1,2,3,4,5,6)
+x = 1:6
+print(x)
+
+# calculate sum of all entries of vector x
+s = sum(x)
+print(s)
+
+# calculate average of all x's entries
+m = mean(x)
+print(m)
+
+```
+
+### Example: find the sum of the integers from 1 to 1024.
+```{r}
+x = 1:1024
+s = sum(x)
+print(s)
+```
+
+### This can be done in one command
+```{r}
+s = sum(1:1024)
+print(s)
+```
+
+# A few more examples with powers
+### Example: find the sum of the squares of the integers from 1 to 1024 
+```{r}
+x = 1:1024
+s = sum(x^2)
+print(s)
+
+# In one line
+print(sum((1:1024)^2))
+```
+
+# Matrices
+## R's method of creating matrices is a little bit clunky. It works by arranging the entries in a vector into rows and columns.  
+  
+### A vector of length 10 can be arranged as a 2x5 or a 5x2 matrix
+### Again the syntax is clunky but very clear
+```{r}
+#Vector x(1,2,3,4,5,6,7,8,9,10)
+x = 1:10
+print(x)
+
+#Matrix y 2x5(2 row 5 column)
+y = matrix(x, nrow=2, ncol=5)
+print(y)
+
+#Matrix z 5x2(5 row 2 column)
+z = matrix(x, nrow=5, ncol=2)
+print(z)
+
+```
+
+<span style="color:red;"># Notice in the examples above that R builds the matrices one column at a time. That is, our vector 1 to 10 runs in sequence down the column.</span>  
+  
+<span style="color:red;"># However the matrix() function, like most R function, has a lot of optional parameters that allow you to control its behavior.</span>
+
+### How to make it build a matrix by rows
+```{r}
+y = matrix(x, nrow = 2, ncol = 5, byrow = TRUE)
+print(y)
+```
+# Accessing Entries in Matrices
+### The square bracket notation is used by giving both the row and column indices.
+```{r}
+x = 1:10
+y = matrix(x, nrow=2, ncol=5)
+print(y)
+
+#print an element or an entry
+print(y[1,2])
+print(y[2,3])
+
+```
+
+# Sums and Means on Matrices
+### Taking the sums or means of the columns(or rows) of a matrix will be every useful to us
+```{r}
+# Start by creating a matrix to practice on.
+x = 1:10
+y = matrix(x, nrow=2, ncol=5)
+print(y)
+
+#To sum each of the columns we use the colSums() function.
+# y has five columns so colSums(y) produces 5 numbers.
+s = colSums(y)
+print(s)
+
+# y has two rows so rowSums(y) produces 2 numbers
+s = rowSums(y)
+print(s)
+
+# Likewise rowMeans(y) and colMeans(y)
+m = rowMeans(y)
+print(m)
+m = colMeans(y)
+print(m)
+
+```
+
